@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMBAシステム 高認通信講座版｜江原予備校</title>
+<title>GAMBAシステム 高認生徒版｜江原予備校</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap');
   :root {
@@ -12,6 +12,11 @@
     --gold: #f7b733; --text: #2c2c2c; --muted: #777;
     --bg: #f5f3ef; --white: #ffffff; --radius: 12px;
     --pink: #e91e8c; --pink-light: #fdf0f8;
+    --green: #2e7d5e; --green-light: #eaf5f0;
+    --purple: #5b3fa6; --purple-light: #f0ebff;
+    --blue: #1a6b9a; --blue-light: #e8f4fd;
+    --teal: #1a7a7a; --teal-light: #e5f5f5;
+    --brown: #7a4a1a; --brown-light: #fdf3e7;
   }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Noto Sans JP',sans-serif; background:var(--bg); color:var(--text); line-height:1.7; }
@@ -26,13 +31,17 @@
   .hero-catch { font-family: 'Noto Serif JP', serif; font-size: 1.4rem; font-weight: 700; color: var(--gold); margin-bottom: 10px; line-height: 1.6; }
   .hero-desc { font-size: 0.82rem; color: rgba(255,255,255,0.82); max-width: 500px; margin: 0 auto; line-height: 1.9; }
 
-  .container { max-width: 860px; margin: 0 auto; padding: 40px 20px 60px; }
+  /* ===== 科目バッジ一覧（ヒーロー下） ===== */
+  .subject-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 20px 24px 28px; background: var(--navy); }
+  .sbadge { font-size: 0.72rem; font-weight: 700; padding: 4px 13px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.9); background: rgba(255,255,255,0.1); letter-spacing: 0.06em; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 20px 60px; }
 
   .section-title { font-family: 'Noto Serif JP', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 24px; padding-left: 14px; border-left: 4px solid var(--orange); }
 
   /* ===== 科目カード ===== */
   .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 48px; }
-  @media(max-width:600px){ .cards-grid { grid-template-columns: 1fr; } }
+  @media(max-width:620px){ .cards-grid { grid-template-columns: 1fr; } }
 
   .subject-card { background: var(--white); border-radius: var(--radius); overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.07); transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; color: inherit; display: block; }
   .subject-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.12); }
@@ -47,35 +56,64 @@
   .unit-tag { font-size: 0.65rem; padding: 2px 9px; border-radius: 10px; font-weight: 500; }
   .card-footer-link { padding: 10px 20px; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
 
+  /* ===== 色テーマ ===== */
+  /* 国語：ピンク */
+  .c-kokugo .card-emoji { background: var(--pink-light); }
+  .c-kokugo .card-category { background: var(--pink); color: white; }
+  .c-kokugo .unit-tag { background: var(--pink-light); color: var(--pink); }
+  .c-kokugo .card-footer-link { background: var(--pink-light); color: var(--pink); }
+
   /* 英語：青 */
-  .s1 .card-emoji { background: #e8f4fd; }
-  .s1 .card-category { background: #1a6b9a; color: white; }
-  .s1 .unit-tag { background: #e8f4fd; color: #1a6b9a; }
-  .s1 .card-footer-link { background: #e8f4fd; color: #1a6b9a; }
+  .c-english .card-emoji { background: var(--blue-light); }
+  .c-english .card-category { background: var(--blue); color: white; }
+  .c-english .unit-tag { background: var(--blue-light); color: var(--blue); }
+  .c-english .card-footer-link { background: var(--blue-light); color: var(--blue); }
 
   /* 数学：オレンジ */
-  .s2 .card-emoji { background: var(--orange-light); }
-  .s2 .card-category { background: var(--orange); color: white; }
-  .s2 .unit-tag { background: var(--orange-light); color: var(--orange); }
-  .s2 .card-footer-link { background: var(--orange-light); color: var(--orange); }
+  .c-math .card-emoji { background: var(--orange-light); }
+  .c-math .card-category { background: var(--orange); color: white; }
+  .c-math .unit-tag { background: var(--orange-light); color: var(--orange); }
+  .c-math .card-footer-link { background: var(--orange-light); color: var(--orange); }
 
-  /* 国語：ピンク */
-  .s3 .card-emoji { background: var(--pink-light); }
-  .s3 .card-category { background: var(--pink); color: white; }
-  .s3 .unit-tag { background: var(--pink-light); color: var(--pink); }
-  .s3 .card-footer-link { background: var(--pink-light); color: var(--pink); }
+  /* 地理：ティール */
+  .c-chiri .card-emoji { background: var(--teal-light); }
+  .c-chiri .card-category { background: var(--teal); color: white; }
+  .c-chiri .unit-tag { background: var(--teal-light); color: var(--teal); }
+  .c-chiri .card-footer-link { background: var(--teal-light); color: var(--teal); }
 
-  /* 理科：緑 */
-  .s4 .card-emoji { background: #eaf5f0; }
-  .s4 .card-category { background: #2e7d5e; color: white; }
-  .s4 .unit-tag { background: #eaf5f0; color: #2e7d5e; }
-  .s4 .card-footer-link { background: #eaf5f0; color: #2e7d5e; }
+  /* 歴史：茶 */
+  .c-history .card-emoji { background: var(--brown-light); }
+  .c-history .card-category { background: var(--brown); color: white; }
+  .c-history .unit-tag { background: var(--brown-light); color: var(--brown); }
+  .c-history .card-footer-link { background: var(--brown-light); color: var(--brown); }
 
-  /* 社会：紫 */
-  .s5 .card-emoji { background: #f0ebff; }
-  .s5 .card-category { background: #5b3fa6; color: white; }
-  .s5 .unit-tag { background: #f0ebff; color: #5b3fa6; }
-  .s5 .card-footer-link { background: #f0ebff; color: #5b3fa6; }
+  /* 公共：紫 */
+  .c-koukyou .card-emoji { background: var(--purple-light); }
+  .c-koukyou .card-category { background: var(--purple); color: white; }
+  .c-koukyou .unit-tag { background: var(--purple-light); color: var(--purple); }
+  .c-koukyou .card-footer-link { background: var(--purple-light); color: var(--purple); }
+
+  /* 情報：ネイビー */
+  .c-joho .card-emoji { background: var(--navy-light); }
+  .c-joho .card-category { background: var(--navy); color: white; }
+  .c-joho .unit-tag { background: var(--navy-light); color: var(--navy); }
+  .c-joho .card-footer-link { background: var(--navy-light); color: var(--navy); }
+
+  /* 科学と人間生活：緑 */
+  .c-kagaku .card-emoji { background: var(--green-light); }
+  .c-kagaku .card-category { background: var(--green); color: white; }
+  .c-kagaku .unit-tag { background: var(--green-light); color: var(--green); }
+  .c-kagaku .card-footer-link { background: var(--green-light); color: var(--green); }
+
+  /* 生物基礎：緑（やや明るめ） */
+  .c-seibutsu .card-emoji { background: #e8f5e9; }
+  .c-seibutsu .card-category { background: #388e3c; color: white; }
+  .c-seibutsu .unit-tag { background: #e8f5e9; color: #388e3c; }
+  .c-seibutsu .card-footer-link { background: #e8f5e9; color: #388e3c; }
+
+  /* ===== 準備中カード ===== */
+  .card-coming { opacity: 0.65; pointer-events: none; cursor: default; }
+  .coming-badge { display: inline-block; background: #bbb; color: white; font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 6px; vertical-align: middle; }
 
   /* ===== フロー ===== */
   .flow-wrap { background: var(--white); border-radius: var(--radius); padding: 28px 24px; margin-bottom: 48px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -118,13 +156,26 @@
     <span class="logo-name">GAMBA</span>
   </div>
   <div class="hero-sub">江原予備校　独自学習システム</div>
-  <div class="hero-tag">高認通信講座版</div>
+  <div class="hero-tag">高卒認定試験 生徒専用版</div>
   <div class="hero-catch">わかった！が続く。<br>基礎から高認合格まで、自分のペースで。</div>
   <div class="hero-desc">
-    高卒認定試験の全科目（英語・数学・国語・理科・社会）に対応。<br>
+    あなたが受験する9科目すべてに対応。<br>
     暗記カード方式で知識を定着させ、<br>
     AI・講師のダブルサポートでしっかり合格へ導きます。
   </div>
+</div>
+
+<!-- 科目バッジ -->
+<div class="subject-badges">
+  <span class="sbadge">📖 国語</span>
+  <span class="sbadge">🔤 英語</span>
+  <span class="sbadge">📐 数学</span>
+  <span class="sbadge">🌏 地理</span>
+  <span class="sbadge">📜 歴史</span>
+  <span class="sbadge">⚖️ 公共</span>
+  <span class="sbadge">💻 情報</span>
+  <span class="sbadge">🔬 科学と人間生活</span>
+  <span class="sbadge">🌿 生物基礎</span>
 </div>
 
 <div class="container">
@@ -144,7 +195,7 @@
         <div class="flow-num" style="background:var(--orange);">2</div>
         <div class="flow-step-icon">🤖</div>
         <div class="flow-step-title">AI質問応答</div>
-        <div class="flow-step-text">わからない問題はAIにいつでも質問。24時間いつでも即座に解説してもらえます。</div>
+        <div class="flow-step-text">わからない問題はAIにいつでも質問。24時間即座に解説してもらえます。</div>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step" style="background:#eaf5f0;">
@@ -157,11 +208,31 @@
   </div>
 
   <!-- ===== 科目カード ===== -->
-  <div class="section-title">GAMBAコンテンツ（高認対応）</div>
+  <div class="section-title">GAMBAコンテンツ（受験9科目）</div>
   <div class="cards-grid">
 
-    <!-- 高認英単語 -->
-    <a class="subject-card s2" href="https://realizefield.github.io/kounin_english_word/hs_index.html" target="_blank">
+    <!-- 国語 -->
+    <a class="subject-card c-kokugo" href="https://realizefield.github.io/kotenbunpou/kotenbunpou1.html" target="_blank">
+      <div class="card-top">
+        <div class="card-emoji">📖</div>
+        <div class="card-info">
+          <div class="card-category">国語</div>
+          <div class="card-name">国語</div>
+          <div class="card-level">⭐ 高認国語対応</div>
+        </div>
+      </div>
+      <div class="card-desc">高認頻出の現代文読解から古文・漢文の基礎まで幅広く対応。語彙・文法もしっかり固めます。</div>
+      <div class="card-units">
+        <span class="unit-tag">現代文読解</span>
+        <span class="unit-tag">語彙・漢字</span>
+        <span class="unit-tag">古文基礎</span>
+        <span class="unit-tag">漢文基礎</span>
+      </div>
+      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+    </a>
+
+    <!-- 英語（高認英単語） -->
+    <a class="subject-card c-english" href="https://realizefield.github.io/kounin_english_word/hs_index.html" target="_blank">
       <div class="card-top">
         <div class="card-emoji">🔤</div>
         <div class="card-info">
@@ -171,11 +242,16 @@
         </div>
       </div>
       <div class="card-desc">高卒認定試験の英語対策に特化した英単語集。暗記カード方式で効率よく得点力を上げます。</div>
+      <div class="card-units">
+        <span class="unit-tag">重要英単語</span>
+        <span class="unit-tag">英熟語</span>
+        <span class="unit-tag">読解対策</span>
+      </div>
       <div class="card-footer-link">コンテンツを見る <span>→</span></div>
     </a>
 
-    <!-- 中学復習英単語 -->
-    <a class="subject-card s1" href="https://realizefield.github.io/j-engglish-word/" target="_blank">
+    <!-- 英語（中学復習英単語） -->
+    <a class="subject-card c-english" href="https://realizefield.github.io/j-engglish-word/" target="_blank">
       <div class="card-top">
         <div class="card-emoji">📝</div>
         <div class="card-info">
@@ -185,16 +261,20 @@
         </div>
       </div>
       <div class="card-desc">英語の基礎に不安がある方のための中学英単語復習。高認英語の土台をしっかり固めます。</div>
+      <div class="card-units">
+        <span class="unit-tag">中学英単語</span>
+        <span class="unit-tag">基礎表現</span>
+      </div>
       <div class="card-footer-link">コンテンツを見る <span>→</span></div>
     </a>
 
-    <!-- 英語 -->
-    <a class="subject-card s1" href="https://realizefield.github.io/j-english/" target="_blank">
+    <!-- 英語（英文法） -->
+    <a class="subject-card c-english" href="https://realizefield.github.io/j-english/" target="_blank">
       <div class="card-top">
         <div class="card-emoji">📝</div>
         <div class="card-info">
           <div class="card-category">英語</div>
-          <div class="card-name">英文法・英単語熟語</div>
+          <div class="card-name">英語（英文法・熟語）</div>
           <div class="card-level">⭐ 高認英語対応</div>
         </div>
       </div>
@@ -209,16 +289,16 @@
     </a>
 
     <!-- 数学 -->
-    <a class="subject-card s2" href="https://realizefield.github.io/j-math/" target="_blank">
+    <a class="subject-card c-math" href="https://realizefield.github.io/j-math/gamba_chugaku.html" target="_blank">
       <div class="card-top">
         <div class="card-emoji">📐</div>
         <div class="card-info">
           <div class="card-category">数学</div>
-          <div class="card-name">計算・方程式・関数</div>
+          <div class="card-name">計算基礎</div>
           <div class="card-level">⭐ 高認数学対応</div>
         </div>
       </div>
-      <div class="card-desc">計算の基礎から方程式・関数・図形まで段階的に学習。高認数学の頻出ポイントを丁寧に解説。</div>
+      <div class="card-desc">分数・正負の数・方程式・連立方程式・展開・因数分解・平方根の計算など、高認の基礎計算力として必要な内容です。短期間でマスターできます。</div>
       <div class="card-units">
         <span class="unit-tag">数と式</span>
         <span class="unit-tag">方程式・不等式</span>
@@ -228,62 +308,142 @@
       <div class="card-footer-link">コンテンツを見る <span>→</span></div>
     </a>
 
-    <!-- 国語 -->
-    <a class="subject-card s3" href="https://realizefield.github.io/kotenbunpou/kotenbunpou1.html" target="_blank">
+    <!-- 高認数学 -->
+    <a class="subject-card c-math" href="https://realizefield.github.io/kounin_math/gamba_kounin.html" target="_blank">
       <div class="card-top">
-        <div class="card-emoji">📖</div>
+        <div class="card-emoji">📘</div>
         <div class="card-info">
-          <div class="card-category">国語</div>
-          <div class="card-name">現代文・古文・漢文</div>
-          <div class="card-level">⭐ 高認国語対応</div>
+          <div class="card-category">数学</div>
+          <div class="card-name">高認数学</div>
+          <div class="card-level">⭐⭐ 高認数学 本番対応</div>
         </div>
       </div>
-      <div class="card-desc">高認頻出の現代文読解から古文・漢文の基礎まで幅広く対応。語彙・文法もしっかり固めます。</div>
+      <div class="card-desc">高認数学の過去問に出題された内容をもとに作成。無駄を省いた厳選コンテンツで、高認合格に必要な力を効率よく身につけます。少しずつ着実に進めて、短期間でマスターしましょう。</div>
       <div class="card-units">
-        <span class="unit-tag">現代文読解</span>
-        <span class="unit-tag">語彙・漢字</span>
-        <span class="unit-tag">古文基礎</span>
-        <span class="unit-tag">漢文基礎</span>
+        <span class="unit-tag">展開・因数分解</span>
+        <span class="unit-tag">方程式・関数</span>
+        <span class="unit-tag">図形</span>
+        <span class="unit-tag">データ・統計</span>
       </div>
       <div class="card-footer-link">コンテンツを見る <span>→</span></div>
     </a>
 
-    <!-- 理科 -->
-    <a class="subject-card s4" href="https://realizefield.github.io/seibutukiso/saibou1.html" target="_blank">
-      <div class="card-top">
-        <div class="card-emoji">🔬</div>
-        <div class="card-info">
-          <div class="card-category">理科</div>
-          <div class="card-name">科学・生物・地学・物理・化学</div>
-          <div class="card-level">⭐ 高認理科対応</div>
-        </div>
-      </div>
-      <div class="card-desc">図解でわかりやすく解説。高認で出題される各科目の重要概念を視覚的に学べます。</div>
-      <div class="card-units">
-        <span class="unit-tag">科学と人間生活</span>
-        <span class="unit-tag">生物基礎</span>
-        <span class="unit-tag">地学基礎</span>
-        <span class="unit-tag">物理・化学基礎</span>
-      </div>
-      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
-    </a>
-
-    <!-- 社会 -->
-    <a class="subject-card s5" href="https://realizefield.github.io/koukyou/koukyo1.html" target="_blank">
+    <!-- 地理 -->
+    <a class="subject-card c-chiri card-coming" href="#">
       <div class="card-top">
         <div class="card-emoji">🌏</div>
         <div class="card-info">
-          <div class="card-category">社会</div>
-          <div class="card-name">世界史・日本史・地理・現代社会</div>
-          <div class="card-level">⭐ 高認社会対応</div>
+          <div class="card-category">地理</div>
+          <div class="card-name">地理 <span class="coming-badge">準備中</span></div>
+          <div class="card-level">⭐ 高認地理対応</div>
         </div>
       </div>
-      <div class="card-desc">年表・地図を活用した暗記で歴史の流れをつかむ。現代社会・倫理・政治経済の重要語句も効率よく定着。</div>
+      <div class="card-desc">世界の地形・気候・産業・人口を地図とともに学習。高認地理の頻出テーマをカード式で定着。コンテンツは準備中です。</div>
       <div class="card-units">
-        <span class="unit-tag">世界史A・B</span>
-        <span class="unit-tag">日本史A・B</span>
-        <span class="unit-tag">地理A・B</span>
-        <span class="unit-tag">現代社会・倫理</span>
+        <span class="unit-tag">世界の地形</span>
+        <span class="unit-tag">気候・農業</span>
+        <span class="unit-tag">人口・都市</span>
+        <span class="unit-tag">日本地理</span>
+      </div>
+      <div class="card-footer-link">コンテンツ準備中 <span>🔜</span></div>
+    </a>
+
+    <!-- 歴史 -->
+    <a class="subject-card c-history" href="https://realizefield.github.io/rekishisougou/index.html" target="_blank">
+      <div class="card-top">
+        <div class="card-emoji">📜</div>
+        <div class="card-info">
+          <div class="card-category">歴史総合</div>
+          <div class="card-name">歴史総合 GAMBA</div>
+          <div class="card-level">⭐ 高認 歴史総合対応</div>
+        </div>
+      </div>
+      <div class="card-desc">穴埋め・人物ポップ・画像サムネイルで楽しく学ぶ歴史総合。確認問題・テストで定着を確認しよう。</div>
+      <div class="card-units">
+        <span class="unit-tag">①十字軍・ルネサンス</span>
+        <span class="unit-tag">②宗教改革</span>
+        <span class="unit-tag">③大航海時代</span>
+        <span class="unit-tag">④〜⑥近日公開</span>
+      </div>
+      <div class="card-footer-link">学習スタート <span>→</span></div>
+    </a>
+
+    <!-- 公共 -->
+    <a class="subject-card c-koukyou" href="https://realizefield.github.io/koukyou/" target="_blank">
+      <div class="card-top">
+        <div class="card-emoji">⚖️</div>
+        <div class="card-info">
+          <div class="card-category">公共</div>
+          <div class="card-name">公共</div>
+          <div class="card-level">⭐ 高認公共対応</div>
+        </div>
+      </div>
+      <div class="card-desc">日本国憲法・政治のしくみ・経済の基礎・倫理の基本概念を分かりやすく整理して学習。</div>
+      <div class="card-units">
+        <span class="unit-tag">政治・憲法</span>
+        <span class="unit-tag">経済のしくみ</span>
+        <span class="unit-tag">倫理・哲学</span>
+        <span class="unit-tag">現代社会</span>
+      </div>
+      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+    </a>
+
+    <!-- 情報 -->
+    <a class="subject-card c-joho" href="https://realizefield.github.io/business1/" target="_blank">
+      <div class="card-top">
+        <div class="card-emoji">💻</div>
+        <div class="card-info">
+          <div class="card-category">情報</div>
+          <div class="card-name">情報</div>
+          <div class="card-level">⭐ 高認情報対応</div>
+        </div>
+      </div>
+      <div class="card-desc">情報社会の基礎・情報セキュリティ・データ活用・プログラミングの基本概念を学習。</div>
+      <div class="card-units">
+        <span class="unit-tag">情報社会</span>
+        <span class="unit-tag">情報セキュリティ</span>
+        <span class="unit-tag">データ活用</span>
+        <span class="unit-tag">プログラミング基礎</span>
+      </div>
+      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+    </a>
+
+    <!-- 科学と人間生活 -->
+    <a class="subject-card c-kagaku card-coming" href="#">
+      <div class="card-top">
+        <div class="card-emoji">🔬</div>
+        <div class="card-info">
+          <div class="card-category">科学と人間生活</div>
+          <div class="card-name">科学と人間生活 <span class="coming-badge">準備中</span></div>
+          <div class="card-level">⭐ 高認理科対応</div>
+        </div>
+      </div>
+      <div class="card-desc">物理・化学・生物・地学の身近な現象を科学的に解説。図解でわかりやすく高認頻出ポイントを学習。コンテンツは準備中です。</div>
+      <div class="card-units">
+        <span class="unit-tag">光・熱・力</span>
+        <span class="unit-tag">物質と化学反応</span>
+        <span class="unit-tag">生物と環境</span>
+        <span class="unit-tag">大気・地球</span>
+      </div>
+      <div class="card-footer-link">コンテンツ準備中 <span>🔜</span></div>
+    </a>
+
+    <!-- 生物基礎 -->
+    <a class="subject-card c-seibutsu" href="https://realizefield.github.io/seibutukiso/saibou1.html" target="_blank">
+      <div class="card-top">
+        <div class="card-emoji">🌿</div>
+        <div class="card-info">
+          <div class="card-category">生物基礎</div>
+          <div class="card-name">生物基礎</div>
+          <div class="card-level">⭐ 高認生物基礎対応</div>
+        </div>
+      </div>
+      <div class="card-desc">細胞のしくみ・遺伝の基礎・体のしくみ・生態系まで、図解でビジュアルに学習。高認出題範囲に完全対応。</div>
+      <div class="card-units">
+        <span class="unit-tag">細胞・生命</span>
+        <span class="unit-tag">遺伝と進化</span>
+        <span class="unit-tag">体のしくみ</span>
+        <span class="unit-tag">生態系</span>
       </div>
       <div class="card-footer-link">コンテンツを見る <span>→</span></div>
     </a>
@@ -301,7 +461,7 @@
     <div class="feature-item">
       <div class="feature-icon">📱</div>
       <div class="feature-title">スマホ・タブレット対応</div>
-      <div class="feature-text">いつでもどこでも学習可能。仕事や家事のスキマ時間にもサクッと復習できます。</div>
+      <div class="feature-text">いつでもどこでも学習可能。通学中や空き時間にもサクッと復習できます。</div>
     </div>
     <div class="feature-item">
       <div class="feature-icon">🎯</div>
@@ -312,10 +472,10 @@
 
   <!-- ===== メインCTA ===== -->
   <div class="cta-section">
-    <div class="cta-title">まずは無料体験指導へ</div>
+    <div class="cta-title">わからないことがあれば、いつでも相談を！</div>
     <div class="cta-text">
-      GAMBAシステムを実際に体験しながら、<br>
-      お一人おひとりに合った学習プランをご提案します。<br>
+      学習の進め方や各科目の質問など、<br>
+      講師がしっかりサポートします。<br>
       お気軽にお問い合わせください。
     </div>
     <a class="cta-btn" href="tel:0963826761">📞 お電話でのお問い合わせ　096-382-6761</a>
@@ -326,4 +486,4 @@
 <footer>
   © 江原予備校 / 株式会社 アイラコーポレーション<br>
   〒862-0950　熊本市中央区水前寺3丁目1-3<br>
-  TEL：096-382-6761　｜　Mail：<a href="/cdn-cgi/l/email-protection#3b52555d547b5e535a495a1642545952505415585456"><span cla
+  TEL：096-382-6761　｜　Mail：<a href="/cdn-cgi/l/email-protection" class="__cf
