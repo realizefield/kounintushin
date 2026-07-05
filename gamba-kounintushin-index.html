@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GAMBAシステム 高認生徒版｜江原予備校</title>
+<title>GAMBAシステム デモ版｜江原予備校</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap');
   :root {
@@ -57,63 +57,59 @@
   .card-footer-link { padding: 10px 20px; font-size: 0.72rem; font-weight: 700; display: flex; align-items: center; justify-content: space-between; }
 
   /* ===== 色テーマ ===== */
-  /* 国語：ピンク */
   .c-kokugo .card-emoji { background: var(--pink-light); }
   .c-kokugo .card-category { background: var(--pink); color: white; }
   .c-kokugo .unit-tag { background: var(--pink-light); color: var(--pink); }
   .c-kokugo .card-footer-link { background: var(--pink-light); color: var(--pink); }
 
-  /* 英語：青 */
   .c-english .card-emoji { background: var(--blue-light); }
   .c-english .card-category { background: var(--blue); color: white; }
   .c-english .unit-tag { background: var(--blue-light); color: var(--blue); }
   .c-english .card-footer-link { background: var(--blue-light); color: var(--blue); }
 
-  /* 数学：オレンジ */
   .c-math .card-emoji { background: var(--orange-light); }
   .c-math .card-category { background: var(--orange); color: white; }
   .c-math .unit-tag { background: var(--orange-light); color: var(--orange); }
   .c-math .card-footer-link { background: var(--orange-light); color: var(--orange); }
 
-  /* 地理：ティール */
   .c-chiri .card-emoji { background: var(--teal-light); }
   .c-chiri .card-category { background: var(--teal); color: white; }
   .c-chiri .unit-tag { background: var(--teal-light); color: var(--teal); }
   .c-chiri .card-footer-link { background: var(--teal-light); color: var(--teal); }
 
-  /* 歴史：茶 */
   .c-history .card-emoji { background: var(--brown-light); }
   .c-history .card-category { background: var(--brown); color: white; }
   .c-history .unit-tag { background: var(--brown-light); color: var(--brown); }
   .c-history .card-footer-link { background: var(--brown-light); color: var(--brown); }
 
-  /* 公共：紫 */
   .c-koukyou .card-emoji { background: var(--purple-light); }
   .c-koukyou .card-category { background: var(--purple); color: white; }
   .c-koukyou .unit-tag { background: var(--purple-light); color: var(--purple); }
   .c-koukyou .card-footer-link { background: var(--purple-light); color: var(--purple); }
 
-  /* 情報：ネイビー */
   .c-joho .card-emoji { background: var(--navy-light); }
   .c-joho .card-category { background: var(--navy); color: white; }
   .c-joho .unit-tag { background: var(--navy-light); color: var(--navy); }
   .c-joho .card-footer-link { background: var(--navy-light); color: var(--navy); }
 
-  /* 科学と人間生活：緑 */
   .c-kagaku .card-emoji { background: var(--green-light); }
   .c-kagaku .card-category { background: var(--green); color: white; }
   .c-kagaku .unit-tag { background: var(--green-light); color: var(--green); }
   .c-kagaku .card-footer-link { background: var(--green-light); color: var(--green); }
 
-  /* 生物基礎：緑（やや明るめ） */
   .c-seibutsu .card-emoji { background: #e8f5e9; }
   .c-seibutsu .card-category { background: #388e3c; color: white; }
   .c-seibutsu .unit-tag { background: #e8f5e9; color: #388e3c; }
   .c-seibutsu .card-footer-link { background: #e8f5e9; color: #388e3c; }
 
-  /* ===== 準備中カード ===== */
+  /* ===== 準備中・生徒版のみカード ===== */
   .card-coming { opacity: 0.65; pointer-events: none; cursor: default; }
   .coming-badge { display: inline-block; background: #bbb; color: white; font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 6px; vertical-align: middle; }
+  .seito-badge { display: inline-block; background: #1a3a6b; color: white; font-size: 0.6rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 6px; vertical-align: middle; }
+
+  /* ===== デモ版バナー ===== */
+  .demo-banner { background: linear-gradient(135deg, #f7b733, #e8650a); color: white; text-align: center; padding: 12px 20px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.05em; }
+  .demo-banner a { color: white; text-decoration: underline; }
 
   /* ===== フロー ===== */
   .flow-wrap { background: var(--white); border-radius: var(--radius); padding: 28px 24px; margin-bottom: 48px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
@@ -146,6 +142,11 @@
 </head>
 <body>
 
+<!-- ===== デモ版バナー ===== -->
+<div class="demo-banner">
+  📢 これはGAMBAシステムの<strong>無料体験デモ版</strong>です。全コンテンツは<strong>生徒専用版</strong>でご利用いただけます。　お申し込み：<a href="tel:0963826761">096-382-6761</a>
+</div>
+
 <!-- ===== ヒーロー ===== -->
 <div class="hero">
   <div class="logo-wrap">
@@ -156,12 +157,12 @@
     <span class="logo-name">GAMBA</span>
   </div>
   <div class="hero-sub">江原予備校　独自学習システム</div>
-  <div class="hero-tag">高卒認定試験 生徒専用版</div>
+  <div class="hero-tag">高卒認定試験 デモ版（無料体験）</div>
   <div class="hero-catch">わかった！が続く。<br>基礎から高認合格まで、自分のペースで。</div>
   <div class="hero-desc">
-    あなたが受験する9科目すべてに対応。<br>
-    暗記カード方式で知識を定着させ、<br>
-    AI・講師のダブルサポートでしっかり合格へ導きます。
+    GAMBAシステムの一部コンテンツを無料で体験できます。<br>
+    🔒 表示のコンテンツは生徒専用版でご利用いただけます。<br>
+    お申し込みはお電話またはお問い合わせフォームから。
   </div>
 </div>
 
@@ -231,7 +232,7 @@
       <div class="card-footer-link">コンテンツを見る <span>→</span></div>
     </a>
 
-    <!-- 英語（高認英単語） -->
+    <!-- 英語（高認英単語）デモで見せる -->
     <a class="subject-card c-english" href="https://realizefield.github.io/kounin_english_word/hs_index.html" target="_blank">
       <div class="card-top">
         <div class="card-emoji">🔤</div>
@@ -247,16 +248,16 @@
         <span class="unit-tag">英熟語</span>
         <span class="unit-tag">読解対策</span>
       </div>
-      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+      <div class="card-footer-link">体験する <span>→</span></div>
     </a>
 
-    <!-- 英語（中学復習英単語） -->
-    <a class="subject-card c-english" href="https://realizefield.github.io/j-engglish-word/" target="_blank">
+    <!-- 英語（中学復習英単語）生徒版のみ -->
+    <a class="subject-card c-english card-coming" href="#">
       <div class="card-top">
         <div class="card-emoji">📝</div>
         <div class="card-info">
           <div class="card-category">英語</div>
-          <div class="card-name">中学復習英単語</div>
+          <div class="card-name">中学復習英単語 <span class="seito-badge">🔒 生徒版</span></div>
           <div class="card-level">⭐　基礎からの復習</div>
         </div>
       </div>
@@ -265,16 +266,16 @@
         <span class="unit-tag">中学英単語</span>
         <span class="unit-tag">基礎表現</span>
       </div>
-      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+      <div class="card-footer-link">生徒専用版で利用可能 <span>🔒</span></div>
     </a>
 
-    <!-- 英語（英文法） -->
-    <a class="subject-card c-english" href="https://realizefield.github.io/j-english/" target="_blank">
+    <!-- 英語（英文法）生徒版のみ -->
+    <a class="subject-card c-english card-coming" href="#">
       <div class="card-top">
         <div class="card-emoji">📝</div>
         <div class="card-info">
           <div class="card-category">英語</div>
-          <div class="card-name">英語(英文法・熟語)</div>
+          <div class="card-name">英語(英文法・熟語) <span class="seito-badge">🔒 生徒版</span></div>
           <div class="card-level">⭐ 高認英語対応</div>
         </div>
       </div>
@@ -285,16 +286,16 @@
         <span class="unit-tag">英熟語</span>
         <span class="unit-tag">読解対策</span>
       </div>
-      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+      <div class="card-footer-link">生徒専用版で利用可能 <span>🔒</span></div>
     </a>
 
-    <!-- 英語(過去問対策・第1問) -->
-    <a class="subject-card c-english" href="https://realizefield.github.io/kouni-eng-kakomon/kounin_eng_q1.html" target="_blank">
+    <!-- 英語(過去問対策)生徒版のみ -->
+    <a class="subject-card c-english card-coming" href="#">
       <div class="card-top">
         <div class="card-emoji">🎯</div>
         <div class="card-info">
           <div class="card-category">英語</div>
-          <div class="card-name">高認英語 過去問対策(第1問)</div>
+          <div class="card-name">高認英語 過去問対策 <span class="seito-badge">🔒 生徒版</span></div>
           <div class="card-level">⭐⭐ 高認英語対応</div>
         </div>
       </div>
@@ -305,10 +306,10 @@
         <span class="unit-tag">段階ヒント</span>
         <span class="unit-tag">詳しい解説</span>
       </div>
-      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+      <div class="card-footer-link">生徒専用版で利用可能 <span>🔒</span></div>
     </a>
 
-    <!-- 数学 -->
+    <!-- 数学（計算基礎）デモで見せる -->
     <a class="subject-card c-math" href="https://realizefield.github.io/j-math/gamba_chugaku.html" target="_blank">
       <div class="card-top">
         <div class="card-emoji">📐</div>
@@ -325,27 +326,27 @@
         <span class="unit-tag">関数・グラフ</span>
         <span class="unit-tag">図形・データ</span>
       </div>
-      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+      <div class="card-footer-link">体験する <span>→</span></div>
     </a>
 
-    <!-- 高認数学 -->
-    <a class="subject-card c-math" href="https://realizefield.github.io/kounin-math/EF_units_table.html" target="_blank">
+    <!-- 高認数学　生徒版のみ -->
+    <a class="subject-card c-math card-coming" href="#">
       <div class="card-top">
         <div class="card-emoji">📘</div>
         <div class="card-info">
           <div class="card-category">数学</div>
-          <div class="card-name">高認数学</div>
+          <div class="card-name">高認数学 <span class="seito-badge">🔒 生徒版</span></div>
           <div class="card-level">⭐⭐ 高認数学 本番対応</div>
         </div>
       </div>
-      <div class="card-desc">高認数学の過去問に出題された内容をもとに作成。無駄を省いた厳選コンテンツで、高認合格に必要な力を効率よく身につけます。少しずつ着実に進めて、短期間でマスターしましょう。</div>
+      <div class="card-desc">高認数学の過去問に出題された内容をもとに作成。無駄を省いた厳選コンテンツで、高認合格に必要な力を効率よく身につけます。</div>
       <div class="card-units">
         <span class="unit-tag">展開・因数分解</span>
         <span class="unit-tag">方程式・関数</span>
         <span class="unit-tag">図形</span>
         <span class="unit-tag">データ・統計</span>
       </div>
-      <div class="card-footer-link">コンテンツを見る <span>→</span></div>
+      <div class="card-footer-link">生徒専用版で利用可能 <span>🔒</span></div>
     </a>
 
     <!-- 地理 -->
@@ -409,21 +410,22 @@
     </a>
 
     <!-- 情報 -->
-    <a class="subject-card c-joho" href="https://realizefield.github.io/business1/" target="_blank">
+    <a class="subject-card c-joho" href="https://realizefield.github.io/kounin-joho/joho_index.html" target="_blank">
       <div class="card-top">
         <div class="card-emoji">💻</div>
         <div class="card-info">
-          <div class="card-category">情報</div>
-          <div class="card-name">情報</div>
-          <div class="card-level">⭐ 高認情報対応</div>
+          <div class="card-category">情報1</div>
+          <div class="card-name">情報1 GAMBA</div>
+          <div class="card-level">⭐ 高認 情報1対応</div>
         </div>
       </div>
-      <div class="card-desc">情報社会の基礎・情報セキュリティ・データ活用・プログラミングの基本概念を学習。</div>
+      <div class="card-desc">教科書5章を全54単元に分け、穴埋め・4択・〇×・確認・練習・演習の6モードで学習。ビット&バイトから情報量計算まで、当校テキスト準拠でしっかり身につけよう。</div>
       <div class="card-units">
-        <span class="unit-tag">情報社会</span>
-        <span class="unit-tag">情報セキュリティ</span>
-        <span class="unit-tag">データ活用</span>
-        <span class="unit-tag">プログラミング基礎</span>
+        <span class="unit-tag">①情報社会</span>
+        <span class="unit-tag">②コミュニケーション</span>
+        <span class="unit-tag">③情報安全</span>
+        <span class="unit-tag">④ディジタル化</span>
+        <span class="unit-tag">⑤問題解決</span>
       </div>
       <div class="card-footer-link">コンテンツを見る <span>→</span></div>
     </a>
@@ -449,7 +451,7 @@
     </a>
 
     <!-- 生物基礎 -->
-    <a class="subject-card c-seibutsu" href="https://realizefield.github.io/seibutukiso/saibou1.html" target="_blank">
+    <a class="subject-card c-seibutsu" href="https://realizefield.github.io/seibutukiso/gamba_kounin_science.html" target="_blank">
       <div class="card-top">
         <div class="card-emoji">🌿</div>
         <div class="card-info">
@@ -492,13 +494,13 @@
 
   <!-- ===== メインCTA ===== -->
   <div class="cta-section">
-    <div class="cta-title">わからないことがあれば、いつでも相談を！</div>
+    <div class="cta-title">全コンテンツは生徒専用版でご利用いただけます</div>
     <div class="cta-text">
-      学習の進め方や各科目の質問など、<br>
-      講師がしっかりサポートします。<br>
-      お気軽にお問い合わせください。
+      お申し込みいただいた方には、全科目・全単元が使える<br>
+      生徒専用版のURLをお送りします。<br>
+      まずはお気軽にご連絡ください。
     </div>
-    <a class="cta-btn" href="tel:0963826761">📞 お電話でのお問い合わせ　096-382-6761</a>
+    <a class="cta-btn" href="tel:0963826761">📞 お申し込み・お問い合わせ　096-382-6761</a>
   </div>
 
 </div>
@@ -506,4 +508,8 @@
 <footer>
   © 江原予備校 / 株式会社 アイラコーポレーション<br>
   〒862-0950　熊本市中央区水前寺3丁目1-3<br>
-  TEL：096-382-6761　｜　Mail：<a href="/cdn-cgi/l/email-protection" class="__cf
+  TEL：096-382-6761
+</footer>
+
+</body>
+</html>
